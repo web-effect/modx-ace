@@ -138,6 +138,12 @@ switch ($modx->event->name) {
 
 $modxTags = (int) $modxTags;
 $script = '';
+$parserHightlits=[];
+if($modxTags){
+	if(method_exists($modx->parser,'getEditorMime'))$mimeType=$modx->parser->getEditorMime('ace',$mimeType);
+	if(method_exists($modx->parser,'getEditorHighlights'))$parserHightlits=$modx->parser->getEditorHighlights('ace');
+	$script .= "Ext.apply(MODx.ux.Ace.additHighlightRules,".json_encode($parserHightlits).");";
+}
 if ($field) {
     $script .= "MODx.ux.Ace.replaceComponent('$field', '$mimeType', $modxTags);";
 }
