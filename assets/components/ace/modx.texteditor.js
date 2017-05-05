@@ -502,6 +502,7 @@ MODx.ux.Ace.replaceTextAreas = function(textAreas, mimeType) {
     });
 };
 
+MODx.ux.Ace.additHighlightRules = {};
 MODx.ux.Ace.createModxMixedMode = function(Mode) {
     function ModxMixedMode() {
         Mode.call(this);
@@ -710,6 +711,10 @@ MODx.ux.Ace.createModxMixedMode = function(Mode) {
                     merge : false
                 });
             }
+            
+            for( var rules_ns in MODx.ux.Ace.additHighlightRules){
+            	Ext.apply(this.$rules,MODx.ux.Ace.additHighlightRules[rules_ns]);
+            }
 
             this.normalizeRules();
         }
@@ -856,6 +861,7 @@ MODx.ux.Ace.mimeTypes = {
 };
 
 MODx.ux.Ace.initialized = false;
+
 
 MODx.ux.Ace.CodeCompleter = function() {
     var TokenIterator = ace.require("ace/token_iterator").TokenIterator;
