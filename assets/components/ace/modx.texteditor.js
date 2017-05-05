@@ -124,9 +124,7 @@ Ext.ux.Ace = Ext.extend(Ext.form.TextField,  {
     },
 
     autoSize: function(){
-        if(!this.grow){
-            return;
-        }
+        if(!this.grow)return;
         var linesCount = this.editor.getSession().getScreenLength();
         var lineHeight = this.editor.renderer.lineHeight;
         var bordersWidth = this.el.getBorderWidth('tb');
@@ -138,6 +136,11 @@ Ext.ux.Ace = Ext.extend(Ext.form.TextField,  {
             this.editor.resize();
             this.fireEvent("autosize", this, h);
         }
+        
+        ace_search = Ext.select('.ace_search').elements[0];
+        if(!ace_search)return;
+        if(h>=window.innerHeight-150)Ext.apply(ace_search.style,{position:'fixed',bottom:'0',top:'initial',borderRadius:'5px 0px 0px 0'});
+        else Ext.apply(ace_search.style,{position:null,bottom:null,top:null,borderRadius:null});
     },
 
     setSize : function(width, height){
