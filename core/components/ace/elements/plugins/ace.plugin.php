@@ -74,22 +74,19 @@ switch ($modx->event->name) {
             $extension = pathinfo($modx->controller->chunk->getSourceFile(), PATHINFO_EXTENSION);
             $mimeType = isset($extensionMap[$extension]) ? $extensionMap[$extension] : 'text/plain';
         } else {
-            $mimeType = 'text/html';
+            switch (true) {
+		    	case $modx->getOption('twiggy_class'):
+					$mimeType = 'text/x-twig';
+					break;
+				case $modx->getOption('pdotools_fenom_default'):
+					$mimeType = 'text/x-smarty';
+					break;
+				default:
+					$mimeType = 'text/html';
+					break;
+			}
         }
         $modxTags = true;
-
-        switch (true) {
-            case $modx->getOption('twiggy_class'):
-                $mimeType = 'text/x-twig';
-                break;
-            case $modx->getOption('pdotools_fenom_default'):
-                $mimeType = 'text/x-smarty';
-                break;
-            default:
-                $mimeType = 'text/html';
-                break;
-        }
-
         break;
     case 'OnPluginFormPrerender':
         $field = 'modx-plugin-plugincode';
