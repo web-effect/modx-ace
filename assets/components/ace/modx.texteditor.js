@@ -697,23 +697,24 @@ MODx.ux.Ace.createModxMixedMode = function(Mode) {
                 }
             ];
 
-            // add twig start tags to the HTML start tags
-            for (var rule in this.$rules) {
-                this.$rules[rule].unshift({
-                    token : "paren.lparen.comment.modx", // opening tag
-                    regex : "\\[\\[\\-",
-                    push : 'modxtag-comment',
-                    merge: true
-                }, {
-                    token : "support.constant.paren.lparen.tag-brackets.modx", // opening tag
-                    regex : "\\[\\[",
-                    push : 'modxtag-start',
-                    merge : false
-                });
+            var starttags = [{
+                token : "paren.lparen.comment.modx",
+                regex : "\\[\\[\\-",
+                push : 'modxtag-comment',
+                merge: true
+            }, {
+                token : "support.constant.paren.lparen.tag-brackets.modx",
+                regex : "\\[\\[",
+                push : 'modxtag-start',
+                merge : false
+            }];
+			for( var rules_ns in MODx.ux.Ace.additHighlightRules){
+				var rule_syntax = Ext.util.JSON.decode(Ext.util.JSON.encode(MODx.ux.Ace.additHighlightRules[rules_ns]));
+            	Ext.apply(this.$rules,rule_syntax['rules']);
+            	starttags=starttags.concat(rule_syntax['starttags']);
             }
-            
-            for( var rules_ns in MODx.ux.Ace.additHighlightRules){
-            	Ext.apply(this.$rules,MODx.ux.Ace.additHighlightRules[rules_ns]);
+            for (var rule in this.$rules) {
+            	this.$rules[rule]=starttags.concat(this.$rules[rule]);
             }
 
             this.normalizeRules();
