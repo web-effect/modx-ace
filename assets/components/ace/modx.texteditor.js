@@ -710,6 +710,7 @@ MODx.ux.Ace.createModxMixedMode = function(Mode) {
             }];
 			for( var rules_ns in MODx.ux.Ace.additHighlightRules){
 				var rule_syntax = Ext.util.JSON.decode(Ext.util.JSON.encode(MODx.ux.Ace.additHighlightRules[rules_ns]));
+				if(Object.keys(rule_syntax).length===0)continue;
             	Ext.apply(this.$rules,rule_syntax['rules']);
             	starttags=starttags.concat(rule_syntax['starttags']);
             }
