@@ -5,7 +5,7 @@ $settings['theme']= $modx->newObject('modSystemSetting');
 $settings['theme']->fromArray(array(
         'key' => 'ace.theme',
         'xtype' => 'textfield',
-        'value' => 'chrome',
+        'value' => 'monokai',
         'namespace' => 'ace',
 		'area' => 'general'
     ),'',true,true);
@@ -14,7 +14,7 @@ $settings['font_size']= $modx->newObject('modSystemSetting');
 $settings['font_size']->fromArray(array(
         'key' => 'ace.font_size',
         'xtype' => 'textfield',
-        'value' => '13px',
+        'value' => '14px',
         'namespace' => 'ace',
 		'area' => 'general'
     ),'',true,true);
@@ -23,7 +23,7 @@ $settings['word_wrap']= $modx->newObject('modSystemSetting');
 $settings['word_wrap']->fromArray(array(
         'key' => 'ace.word_wrap',
         'xtype' => 'combo-boolean',
-        'value' => '',
+        'value' => '1',
         'namespace' => 'ace',
 		'area' => 'general'
     ),'',true,true);
@@ -32,7 +32,7 @@ $settings['soft_tabs']= $modx->newObject('modSystemSetting');
 $settings['soft_tabs']->fromArray(array(
         'key' => 'ace.soft_tabs',
         'xtype' => 'combo-boolean',
-        'value' => '1',
+        'value' => '0',
         'namespace' => 'ace',
         'area' => 'general'
     ),'',true,true);
@@ -77,7 +77,7 @@ $settings['height']= $modx->newObject('modSystemSetting');
 $settings['height']->fromArray(array(
         'key' => 'ace.height',
         'xtype' => 'textfield',
-        'value' => '',
+        'value' => '300',
         'namespace' => 'ace',
         'area' => 'general'
     ),'',true,true);
